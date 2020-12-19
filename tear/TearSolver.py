@@ -5,18 +5,24 @@
 @Desc  :this python script implements a function finding optimal tearing strategy for a system with loops
 """
 import numpy as np
-from IntProg import intProgSolver
-from Sys2Matrix import generateAdjacentMatrix
-from Graph import Graph
+from tear.IntProg import intProgSolver
+from common.Sys2Matrix import generateAdjacentMatrix
+from common.Graph import Graph
 
 
 class TearSolver(object):
-    def __init__(self, system):
+    def __init__(self, system, ismatrix=False):
         """
         this function initialize parameters for the tearing problem
-        @param system: a system represented in a dictionary form, form {node1:[nodes_connected_to_1], nodes2:...}
+        @param system:
+        @param system: a system represented as either graph or matrix representation
+        @param ismatrix: whether eq is graph representation (False), or matrix representation (True)
         """
-        self.matrix = generateAdjacentMatrix(system)  # adjacent matrix representation of this system
+        if ismatrix:
+            self.matrix = system
+        else:
+            self.matrix = generateAdjacentMatrix(system)  # adjacent matrix representation of this system
+        print(self.matrix)
         self.record = self.matrix.copy()  # record whether edge has been visited
         self.graph = Graph(self.matrix)  # graph representation of this system
         self.num_loop = 0  # number of loops
@@ -72,7 +78,7 @@ class TearSolver(object):
     def optimalTear(self):
         """
         this function converts a tearing problem into a integer programming problem
-        @return tear edge: an optimal set of edges ro be torn
+        @return tear_edge: an optimal set of edges ro be torn
         """
         self.loopSearch([], self.graph.nodes_list[0])  # find loops in the system
         bounds = []  # set upper and lower bound for integer programming

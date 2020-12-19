@@ -1,22 +1,28 @@
 """
-@File  :Solver.py
+@File  :Decompose.py
 @Author:Zhichen Zeng
-@Date  :2020/12/12 10:30
-@Desc  :this python script implements a function finding the optimal solution to a set of equations
+@Date  :2020/12/19 10:52
+@Desc  :
 """
-from Graph import Graph
-from Eq2Matrix import generateEventMatrix
-from Eq2Graph import generateGraph
-from OutputSelection import optimalAlignment
+from common.Graph import Graph
+from common.Sys2Matrix import generateAdjacentMatrix
 
 
-class EqSolver(object):
-    def __init__(self, eq):
-        self.eventMatrix = generateEventMatrix(eq)  # event matrix for equations
-        self.alignmentMap = optimalAlignment(self.eventMatrix)
-        self.matrix = generateGraph(self.eventMatrix, self.alignmentMap)
+class Decompose(object):
+    def __init__(self, system, ismatrix=False):
+        """
+        ths function initializes parameters for decomposition process
+        @param system: a system represented as either graph or matrix representation
+        @param ismatrix: whether eq is graph representation (False), or matrix representation (True)
+        """
+        if ismatrix:
+            self.matrix = system
+        else:
+            self.matrix = generateAdjacentMatrix(system)  # event matrix for equations
         self.loop_map = {}
         self.num_loop = 0
+        self.solution = []
+        print(self.matrix)
 
     def loopSearch(self):
         """
@@ -63,10 +69,10 @@ class EqSolver(object):
             nodes_visited.append(node_id)  # add current node to visited node list
         return None, None  # not solvable
 
-    def optimalSolution(self):
+    def decompose(self):
         """
-        this function finds the optimal solution to a set of equations via Sargent method
-        @return optimal_solution: optimal solution for equations
+        this function decomposes a system via Sargent method
+        @return self.solution: optimal solution for equations
         """
         output_nodes = []  # recording output nodes of the graph (ordered list)
         input_nodes = []  # recording input nodes of the graph (ordered list)
@@ -89,16 +95,16 @@ class EqSolver(object):
             self.num_loop += 1
             self.loop_map[loop_name] = loop
             eq_id_list = self.matrix.columns.values.tolist()
-        # optimal_solution = reversed(input_nodes + output_nodes)
-        optimal_solution = input_nodes + output_nodes
+        # self.solution = reversed(input_nodes + output_nodes)
+        self.solution = input_nodes + output_nodes
         flag = True
         while flag:  # replace imaginary nodes with actual equations
             flag = False
             for item in self.loop_map:
-                for i in range(len(optimal_solution)):
-                    if item in optimal_solution[i]:
+                for i in range(len(self.solution)):
+                    if item in self.solution[i]:
                         flag = True
-                        optimal_solution[i].remove(item)
-                        optimal_solution[i].extend(self.loop_map[item])
-                # optimal_solution = [loop_map[item] if i == item else i for i in optimal_solution]
-        return optimal_solution
+                        self.solution[i].remove(item)
+                        self.solution[i].extend(self.loop_map[item])
+                # self.solution = [loop_map[item] if i == item else i for i in self.solution]
+        return self.solution
