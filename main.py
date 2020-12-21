@@ -7,31 +7,68 @@
 from decompose.Decompose import Decompose
 from decompose.EqSolver import EqSolver
 from tear.TearSolver import TearSolver
+import argparse
+import textwrap
 
 if __name__ == '__main__':  # for test
-    # Decomposition Test
-    system = {'A': ['B'], 'B': ['C'], 'C': ['A', 'D', 'E'], 'D': ['B', 'E'], 'E': ['C', 'F'], 'F': 'G', 'G': ['F', 'I'],
-              'H': 'B', 'I': []}
-    decomposer = Decompose(system)
-    res = decomposer.decompose()
-    print("optimal solution for system\n" + "%s\n" % system + "is as follow:")
-    for item in res:
-        print(item)
-    print()
+    parser = argparse.ArgumentParser(description='Configuration file',
+                                     usage='use "python %(prog)s --help" for more information',
+                                     formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument(
+        "--task",
+        dest="task",
+        default="decompose",
+        help=textwrap.dedent('''\
+        Type of task, options:       
+        decompose: decompose a system       
+        equation: optimal solution for equations       
+        tear: tear a system
+        '''))
+    parser.add_argument(
+        "--example",
+        dest="example",
+        default="Decompose_ex1.txt",
+        help="name of your example file"
+    )
 
-    # EqSolver Test
-    equation = {'f1': ['x1', 'x4'], 'f2': ['x2', 'x3', 'x4', 'x5'], 'f3': ['x1', 'x2', 'x4'], 'f4': ['x1', 'x4'],
-                'f5': ['x1', 'x3', 'x5']}
-    eqsolver = EqSolver(equation)
-    res = eqsolver.optimalEq()
-    print("optimal solution for equations\n" + "%s\n" % equation + "is as follow:")
-    for item in res:
-        print(item)
-    print()
+    args = parser.parse_args()
 
-    # TearSolver Test
-    system = {"K": ["L"], "L": ["O", "M"], "M": ["L", "S"], "O": ["K", "S"], "S": ["K"]}
-    tearsolver = TearSolver(system)
-    res = tearsolver.optimalTear()
-    print("optimal tearing strategy for system\n" + "%s\n" % system + "is as follow:")
-    print(res)
+    # Decomposition
+    if args.task == "decompose":
+        fr = open("examples/" + args.example, 'r+')
+        system = eval(fr.read())
+        fr.close()
+        print("Using Decomposition Solver\n")
+        decomposer = Decompose(system)
+        res = decomposer.decompose()
+        print("\nOptimal solution for system\n" + "%s\n" % system + "is as follow:")
+        for item in res:
+            print(item)
+        print()
+
+    # EqSolver
+    elif args.task == "equation":
+        fr = open("examples/" + args.example, 'r+')
+        equation = eval(fr.read())
+        fr.close()
+        print("Using Equation Solver\n")
+        eqsolver = EqSolver(equation)
+        res = eqsolver.optimalEq()
+        print("\nOptimal solution for equations\n" + "%s\n" % equation + "is as follow:")
+        for item in res:
+            print(item)
+        print()
+
+    # TearSolver
+    elif args.task == "tear":
+        fr = open("examples/" + args.example, 'r+')
+        print("Using Tear Solver\n")
+        system = eval(fr.read())
+        fr.close()
+        tearsolver = TearSolver(system)
+        res = tearsolver.optimalTear()
+        print("\nOptimal tearing strategy for system\n" + "%s\n" % system + "is as follow:")
+        print(res)
+
+    else:
+        print("invalid task type!\n")

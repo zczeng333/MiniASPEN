@@ -1,5 +1,5 @@
 """
-@File  :Eq2Graph.py
+@File  :Sys2Graph.py
 @Author:Zhichen Zeng
 @Date  :2020/12/12 10:20
 @Desc  :this python script implements a function converting equations to a graph based on output alignment

@@ -1,5 +1,5 @@
 """
-@File  :Solver.py
+@File  :EqSolver.py
 @Author:Zhichen Zeng
 @Date  :2020/12/12 10:30
 @Desc  :this python script implements a function finding the optimal solution to a set of equations
