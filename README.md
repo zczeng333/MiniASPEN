@@ -66,6 +66,22 @@ package             | version
 │          OutputSelection.cpython-37.pyc
 │          __init__.cpython-37.pyc
 │
+├─examples  // example demos
+│      Decompose_ex1.txt
+│      Decompose_ex2.txt
+│      Eq_ex1.txt
+│      Eq_ex2.txt
+│      Tear_ex1.txt
+│      Tear_ex2.txt
+│
+├─images    //images
+│      Decompose_ex1.jpg
+│      Decompose_ex2.jpg
+│      Eq_ex1.png
+│      Eq_ex2.png
+│      Tear_ex1.jpg
+│      Tear_ex2.jpg
+│
 └─tear  // system tear utils
    │  IntProg.py    // integer programming class
    │  TearSolver.py // system tearing solver class
@@ -82,7 +98,7 @@ package             | version
 - To run a system decomposition:
 Construct your problem set in a txt file according to the following format
 ```
-{'node1':['nodes_connected_to_node1'], 'node2':['node2_connected_to_node2'],...}
+{'node1':['nodes_connected_to_node1'], 'node2':['nodes_connected_to_node2'],...}
 ```
 Store your problem set in folder '/examples', and run the following command in your terminal
 ```
@@ -104,7 +120,7 @@ Store your problem set in folder '/examples', and run the following command in y
 - To run a system tearing:
 Construct your problem set in a txt file according to the following format
 ```
-{'node1':['nodes_connected_to_node1'], 'node2':['node2_connected_to_node2'],...}
+{'node1':['nodes_connected_to_node1'], 'node2':['nodes_connected_to_node2'],...}
 ```
 Store your problem set in folder '/examples', and run the following command in your terminal
 ```
@@ -114,14 +130,18 @@ Store your problem set in folder '/examples', and run the following command in y
 ## Examples
 ### System Decomposition
 **Decompose_ex1**
+
 ![Decompose_ex1](./images/Decompose_ex1.jpg)
+
 Run the following command in your terminal
 ```
 > python main.py --task decompose --example Decompose_ex1.txt
 ```
 
 **Decompose_ex2**
+
 ![Decompose_ex2](./images/Decompose_ex2.jpg)
+
 Run the following command in your terminal
 ```
 > python main.py --task decompose --example Decompose_ex2.txt
@@ -157,6 +177,7 @@ Run the following command in your terminal
 ```
 
 **Tear_ex2**
+
 ![Tear_ex2](./images/Tear_ex2.jpg)
 
 Run the following command in your terminal
