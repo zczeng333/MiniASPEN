@@ -7,10 +7,11 @@
 from decompose.Decompose import Decompose
 from decompose.EqSolver import EqSolver
 from tear.TearSolver import TearSolver
+from common.EqParse import eqsReformat
 import argparse
 import textwrap
 
-if __name__ == '__main__':  # for test
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Configuration file',
                                      usage='use "python %(prog)s --help" for more information',
                                      formatter_class=argparse.RawTextHelpFormatter)
@@ -19,23 +20,23 @@ if __name__ == '__main__':  # for test
         dest="task",
         default="decompose",
         help=textwrap.dedent('''\
-        Type of task, options:       
+        type of task, options:       
         decompose: decompose a system       
         equation: optimal solution for equations       
         tear: tear a system
         '''))
     parser.add_argument(
-        "--example",
-        dest="example",
+        "--problem_set",
+        dest="problem_set",
         default="Decompose_ex1.txt",
-        help="name of your example file"
+        help="name of your problem set"
     )
 
     args = parser.parse_args()
 
     # Decomposition
     if args.task == "decompose":
-        fr = open("examples/" + args.example, 'r+')
+        fr = open("./examples/" + args.problem_set, 'r+')
         system = eval(fr.read())
         fr.close()
         print("Using Decomposition Solver\n")
@@ -48,20 +49,21 @@ if __name__ == '__main__':  # for test
 
     # EqSolver
     elif args.task == "equation":
-        fr = open("examples/" + args.example, 'r+')
-        equation = eval(fr.read())
-        fr.close()
         print("Using Equation Solver\n")
+        fr = open("./examples/" + args.problem_set, 'r+')
+        eq_string = str(fr.read())
+        equation = eqsReformat(eq_string)
+        fr.close()
         eqsolver = EqSolver(equation)
         res = eqsolver.optimalEq()
-        print("\nOptimal solution for equations\n" + "%s\n" % equation + "is as follow:")
+        print("\nOptimal solution for equations\n" + "%s\n" % eq_string + "is as follow:")
         for item in res:
             print(item)
         print()
 
     # TearSolver
     elif args.task == "tear":
-        fr = open("examples/" + args.example, 'r+')
+        fr = open("./examples/" + args.problem_set, 'r+')
         print("Using Tear Solver\n")
         system = eval(fr.read())
         fr.close()

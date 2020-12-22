@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 @File  :Sys2Matrix.py.py
 @Author:Zhichen Zeng

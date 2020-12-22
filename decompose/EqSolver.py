@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 @File  :EqSolver.py
 @Author:Zhichen Zeng

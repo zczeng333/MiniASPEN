@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 @File  :OutputSelection.py.py
 @Author:Zhichen Zeng
@@ -33,6 +34,5 @@ def optimalAlignment(event_matrix):
         alignment_map[eq_id] = param_id
         event_matrix = event_matrix.drop(labels=eq_id)  # drop column (parameter)
         event_matrix = event_matrix.drop(labels=param_id, axis=1)  # drop row (equation)
-    # print("optimal output:")
-    # print("%s\n" % alignment_map)
+    print("\nOptimal output variable selection is as follow:\n" + "%s\n" % alignment_map)
     return alignment_map

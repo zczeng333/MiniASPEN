@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 @File  :TearSolver.py
 @Author:Zhichen Zeng

@@ -29,26 +29,15 @@ package             | version
 │  main.py      // main function
 │  README.md    // help
 │
-├─.idea
-│  │  .gitignore
-│  │  encodings.xml
-│  │  MiniASPEN.iml
-│  │  misc.xml
-│  │  modules.xml
-│  │  vcs.xml
-│  │  workspace-Surface-Zhichen.xml
-│  │  workspace.xml
-│  │
-│  └─inspectionProfiles
-│          profiles_settings.xml
-│
 ├─common            // common utils
+│  │  EqParse.py    // reformat input equations
 │  │  Graph.py      // graph class
 │  │  Sys2Graph.py  // convert system to graph representation
 │  │  Sys2Matrix.py // convert system to matrix representation
 │  │  __init__.py   // initilization function for common utils
 │  │
 │  └─__pycache__
+│          EqParse.cpython-37.pyc
 │          Graph.cpython-37.pyc
 │          Sys2Graph.cpython-37.pyc
 │          Sys2Matrix.cpython-37.pyc
@@ -109,7 +98,13 @@ package             | version
 
 - Construct your problem set in a txt file according to the following format
 ```
-{'equation1':['variables_in_equation1'], 'equation2':['variables_in_equation2'],...}
+equation1_name: equations
+equation2_name: equations
+...
+```
+- Make sure variables are quoted with quotation "", e.g.
+```
+f1: "x1" + "x2" * "x3" + 5 = 0
 ```
 - Store your problem set in folder '/examples', and run the following command in your terminal
 ```

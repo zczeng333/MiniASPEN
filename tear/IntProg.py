@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 @File  :IntProg.py
 @Author:Zhichen Zeng
