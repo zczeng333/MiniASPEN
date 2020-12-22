@@ -95,34 +95,34 @@ package             | version
 
 ## Usage
 ### System Decomposition
-- To run a system decomposition:
-Construct your problem set in a txt file according to the following format
+
+- Construct your problem set in a txt file according to the following format
 ```
 {'node1':['nodes_connected_to_node1'], 'node2':['nodes_connected_to_node2'],...}
 ```
-Store your problem set in folder '/examples', and run the following command in your terminal
+- Store your problem set in folder '/examples', and run the following command in your terminal
 ```
 > python main.py --task decompose --example name_of_your_problem_set.txt
 ```
 
 ### Equation Decomposition
-- To run a equation decomposition:
-Construct your problem set in a txt file according to the following format
+
+- Construct your problem set in a txt file according to the following format
 ```
 {'equation1':['variables_in_equation1'], 'equation2':['variables_in_equation2'],...}
 ```
-Store your problem set in folder '/examples', and run the following command in your terminal
+- Store your problem set in folder '/examples', and run the following command in your terminal
 ```
 > python main.py --task equation --example name_of_your_problem_set.txt
 ```
 
 ### System Tearing
-- To run a system tearing:
-Construct your problem set in a txt file according to the following format
+
+- Construct your problem set in a txt file according to the following format
 ```
 {'node1':['nodes_connected_to_node1'], 'node2':['nodes_connected_to_node2'],...}
 ```
-Store your problem set in folder '/examples', and run the following command in your terminal
+- Store your problem set in folder '/examples', and run the following command in your terminal
 ```
 > python main.py --task tear --example name_of_your_problem_set.txt
 ```
@@ -133,7 +133,7 @@ Store your problem set in folder '/examples', and run the following command in y
 
 ![Decompose_ex1](./images/Decompose_ex1.jpg)
 
-Run the following command in your terminal
+- Run the following command in your terminal
 ```
 > python main.py --task decompose --example Decompose_ex1.txt
 ```
@@ -142,7 +142,7 @@ Run the following command in your terminal
 
 ![Decompose_ex2](./images/Decompose_ex2.jpg)
 
-Run the following command in your terminal
+- Run the following command in your terminal
 ```
 > python main.py --task decompose --example Decompose_ex2.txt
 ```
@@ -152,7 +152,7 @@ Run the following command in your terminal
 
 ![Eq_ex1](./images/Eq_ex1.png)
 
-Run the following command in your terminal
+- Run the following command in your terminal
 ```
 > python main.py --task equation --example Eq_ex1.txt
 ```
@@ -161,7 +161,7 @@ Run the following command in your terminal
 
 ![Eq_ex2](./images/Eq_ex2.png)
 
-Run the following command in your terminal
+- Run the following command in your terminal
 ```
 > python main.py --task equation --example Eq_ex2.txt
 ```
@@ -171,7 +171,7 @@ Run the following command in your terminal
 
 ![Tear_ex1](./images/Tear_ex1.jpg)
 
-Run the following command in your terminal
+- Run the following command in your terminal
 ```
 > python main.py --task tear --example Tear_ex1.txt
 ```
@@ -180,7 +180,7 @@ Run the following command in your terminal
 
 ![Tear_ex2](./images/Tear_ex2.jpg)
 
-Run the following command in your terminal
+- Run the following command in your terminal
 ```
 > python main.py --task tear --example Tear_ex2.txt
 ```
