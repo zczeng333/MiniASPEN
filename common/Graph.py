@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-@File  :Graph.py
-@Author:Zhichen Zeng
-@Date  :2020/12/12 10:21
-@Desc  :this python script implements classes for nodes and graphs
+@File  : Graph.py
+@Author: ZC Zeng
+@Date  : 2020/12/12 10:21
+@Desc  : Node & Graph classes
 """
 
 

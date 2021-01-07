@@ -1,15 +1,15 @@
 # coding=utf-8
 """
-@File  :EqSolver.py
-@Author:Zhichen Zeng
-@Date  :2020/12/12 10:30
-@Desc  :this python script implements a function finding the optimal solution to a set of equations
+@File  : EqSolver.py
+@Author: ZC Zeng
+@Date  : 2020/12/12 10:30
+@Desc  : An equation solver finding optimal solution order for a set of equations
 """
 
 from common.Sys2Matrix import generateEventMatrix
 from common.Sys2Graph import generateGraph
 from decompose.OutputSelection import optimalAlignment
-from decompose.Decompose import Decompose
+from decompose.Decomposer import Decomposer
 
 
 class EqSolver(object):
@@ -32,6 +32,6 @@ class EqSolver(object):
         this function finds the optimal solution to a set of equations
         @return solution: optimal solution for input set of equations
         """
-        solver = Decompose(self.matrix, True)
+        solver = Decomposer(self.matrix, True)
         solution = solver.decompose()
         return solution

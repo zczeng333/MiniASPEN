@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-@File  :OutputSelection.py.py
-@Author:Zhichen Zeng
-@Date  :2020/12/12 10:12
-@Desc  :this python script implements a function determining the optimal alignment between equations and parameters
+@File  : OutputSelection.py
+@Author: ZC Zeng
+@Date  : 2020/12/12 10:12
+@Desc  : An alignment function finding optimal output variables for equations
 """
 
 

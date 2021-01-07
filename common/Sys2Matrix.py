@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-@File  :Sys2Matrix.py.py
-@Author:Zhichen Zeng
-@Date  :2020/12/12 10:18
-@Desc  :this python script implements a function converting equations to an event matrix
+@File  : Sys2Matrix.py
+@Author: ZC Zeng
+@Date  : 2020/12/12 10:18
+@Desc  : A matrix generation function converting systems into matrix representation
 """
 
 import pandas as pd

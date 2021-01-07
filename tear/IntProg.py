@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-@File  :IntProg.py
-@Author:Zhichen Zeng
-@Date  :2020/12/17 19:26
-@Desc  :this python script implements a function solving integer programming problems with branch and bound method
+@File  : IntProg.py
+@Author: ZC Zeng
+@Date  : 2020/12/17 19:26
+@Desc  : A integer programming solve based on branch and bound method
 """
 
 from scipy.optimize import linprog
@@ -90,23 +90,3 @@ class intProgSolver(object):
         return_val = self.best_val
         return_flag = self.best_flag
         return np.around(return_x), np.around(return_val), return_flag
-
-
-if __name__ == "__main__":  # for test
-    C = -1 * np.array([4, 3, 4, 4, 5, 6, 3, 4, 5, 3, 4, 5, 5, 3, 4, 5, 5, 4, 3, 3, 4, 4, 6, 6, 3, 3, 3, 4, 5, 7])
-    b1 = np.array([10000, 10000, 10000, 10000, 10000, 400000]).T
-    A1 = np.zeros((6, 30))
-    for i in range(5):
-        A1[i, 6 * i:6 * i + 6] = np.array([1, 1, 1, 1, 1, 1])
-    A1[5, :] = np.array([6, 6, 7, 8, 9, 10, 6, 6, 7, 8, 9, 10, 6, 6, 7, 8, 9, 10, 6, 6, 7, 8, 9, 10, 6, 6, 7, 8, 9,
-                         10])
-    lb = 1000 * np.ones((1, 30))
-    ub = np.inf * np.ones((1, 30))
-    bounds = []
-    for i in range(30):
-        bounds.append((lb[0, i], ub[0, i]))
-    xin = np.zeros((1, 30))
-    val = np.inf
-    threshold = 0.001
-    ob = intProgSolver(C, A1, b1, None, None, xin, val, threshold)
-    x, val, flag = ob.intProg(bounds)

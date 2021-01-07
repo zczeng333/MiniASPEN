@@ -3,7 +3,7 @@
 @File  : Decomposer.py
 @Author: ZC Zeng
 @Date  : 2020/12/19 10:52
-@Desc  : A decomposition solver decomposing
+@Desc  : A decomposition solver decomposing an integrated system into several subsystems
 """
 from common.Graph import Graph
 from common.Sys2Matrix import generateAdjacentMatrix

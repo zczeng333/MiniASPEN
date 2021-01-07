@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-@File  :EqParse.py
-@Author:Zhichen Zeng
-@Date  :2020/12/22 下午6:35
-@Desc  : this python script reformats input equations into valid format
+@File  : EqParse.py
+@Author: ZC Zeng
+@Date  : 2020/12/22 18:35
+@Desc  : A String Parse function reformatting input equations into valid format
 """
 
 

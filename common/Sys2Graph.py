@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-@File  :Sys2Graph.py
-@Author:Zhichen Zeng
-@Date  :2020/12/12 10:20
-@Desc  :this python script implements a function converting equations to a graph based on output alignment
+@File  : Sys2Graph.py
+@Author: ZC Zeng
+@Date  : 2020/12/12 10:20
+@Desc  : A graph generation function converting systems into graph representation
 """
 
 import pandas as pd

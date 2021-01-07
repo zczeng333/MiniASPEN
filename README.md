@@ -91,7 +91,7 @@ package             | version
 ```
 - Store your problem set in folder '/examples', and run the following command in your terminal
 ```
-> python main.py --task decompose --example name_of_your_problem_set.txt
+> python main.py --task decompose --problem_set name_of_your_problem_set.txt
 ```
 
 ### Equation Decomposition
@@ -108,7 +108,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 ```
 - Store your problem set in folder '/examples', and run the following command in your terminal
 ```
-> python main.py --task equation --example name_of_your_problem_set.txt
+> python main.py --task equation --problem_set name_of_your_problem_set.txt
 ```
 
 ### System Tearing
@@ -119,7 +119,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 ```
 - Store your problem set in folder '/examples', and run the following command in your terminal
 ```
-> python main.py --task tear --example name_of_your_problem_set.txt
+> python main.py --task tear --problem_set name_of_your_problem_set.txt
 ```
 
 ## Examples
@@ -130,7 +130,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 
 - Run the following command in your terminal
 ```
-> python main.py --task decompose --example Decompose_ex1.txt
+> python main.py --task decompose --problem_set Decompose_ex1.txt
 ```
 
 **Decompose_ex2**
@@ -139,7 +139,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 
 - Run the following command in your terminal
 ```
-> python main.py --task decompose --example Decompose_ex2.txt
+> python main.py --task decompose --problem_set Decompose_ex2.txt
 ```
 
 ### Equation Decomposition
@@ -149,7 +149,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 
 - Run the following command in your terminal
 ```
-> python main.py --task equation --example Eq_ex1.txt
+> python main.py --task equation --problem_set Eq_ex1.txt
 ```
 
 **Eq_ex2**
@@ -158,7 +158,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 
 - Run the following command in your terminal
 ```
-> python main.py --task equation --example Eq_ex2.txt
+> python main.py --task equation --problem_set Eq_ex2.txt
 ```
 
 ### System Tear
@@ -168,7 +168,7 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 
 - Run the following command in your terminal
 ```
-> python main.py --task tear --example Tear_ex1.txt
+> python main.py --task tear --problem_set Tear_ex1.txt
 ```
 
 **Tear_ex2**
@@ -177,5 +177,5 @@ f1: "x1" + "x2" * "x3" + 5 = 0
 
 - Run the following command in your terminal
 ```
-> python main.py --task tear --example Tear_ex2.txt
+> python main.py --task tear --problem_set Tear_ex2.txt
 ```
