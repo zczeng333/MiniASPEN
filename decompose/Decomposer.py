@@ -1,15 +1,15 @@
 # coding=utf-8
 """
-@File  :Decompose.py
-@Author:Zhichen Zeng
-@Date  :2020/12/19 10:52
-@Desc  :
+@File  : Decomposer.py
+@Author: ZC Zeng
+@Date  : 2020/12/19 10:52
+@Desc  : A decomposition solver decomposing
 """
 from common.Graph import Graph
 from common.Sys2Matrix import generateAdjacentMatrix
 
 
-class Decompose(object):
+class Decomposer(object):
     def __init__(self, system, ismatrix=False):
         """
         ths function initializes parameters for decomposition process
@@ -40,6 +40,7 @@ class Decompose(object):
         graph = Graph(self.matrix)
         while len(nodes_unvisited) > 0:
             node_id = nodes_unvisited[0]  # id for nodes to be visited
+            del nodes_unvisited[0]
             node = graph.g[node_id]
             for item1 in node.children:
                 if item1 in nodes_visited:  # find loop
@@ -77,25 +78,33 @@ class Decompose(object):
         """
         output_nodes = []  # recording output nodes of the graph (ordered list)
         input_nodes = []  # recording input nodes of the graph (ordered list)
-        eq_id_list = self.matrix.columns.values.tolist()
+        node_list = self.matrix.columns.values.tolist()
         while not self.matrix.empty:
             # deal with input/output nodes
-            for item in eq_id_list:
+            tmp_output = []
+            tmp_input = []
+            for item in node_list:
                 if self.matrix.loc[item].sum() == 0:  # zero row -> output node
-                    output_nodes.insert(0, [str(item)])
+                    tmp_output.insert(0, str(item))
+                    # output_nodes.insert(0, [str(item)])
                     self.matrix = self.matrix.drop(labels=item)  # drop corresponding column
                     self.matrix = self.matrix.drop(labels=item, axis=1)  # drop corresponding row
                 elif self.matrix[item].sum() == 0:  # zero column -> input node
-                    input_nodes.append([str(item)])
+                    # input_nodes.append([str(item)])
+                    tmp_input.append(str(item))
                     self.matrix = self.matrix.drop(labels=item)  # drop corresponding column
                     self.matrix = self.matrix.drop(labels=item, axis=1)  # drop corresponding row
+            if len(tmp_output) != 0:
+                output_nodes.insert(0, tmp_output)
+            if len(tmp_input) != 0:
+                input_nodes.append(tmp_input)
             if self.matrix.empty:
                 break
             #   loopSearch for residual self.matrix
             loop_name, loop = self.loopSearch()
             self.num_loop += 1
             self.loop_map[loop_name] = loop
-            eq_id_list = self.matrix.columns.values.tolist()
+            node_list = self.matrix.columns.values.tolist()
         # self.solution = reversed(input_nodes + output_nodes)
         self.solution = input_nodes + output_nodes
         flag = True
@@ -107,5 +116,4 @@ class Decompose(object):
                         flag = True
                         self.solution[i].remove(item)
                         self.solution[i].extend(self.loop_map[item])
-                # self.solution = [loop_map[item] if i == item else i for i in self.solution]
         return self.solution
