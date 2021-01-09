@@ -22,7 +22,8 @@ def generateEventMatrix(eq):
         num_eq += 1
     param_set = list(set(param_set))  # remove repeated parameters
     num_param = len(param_set)  # number of parameters
-    print("Equation Statistics:\n" + "# equations: %d, " % num_eq + "# parameters: %d" % num_param)
+    print(
+        'Equation Statistics:\n' + '--------------------\n' + '# equations: %d, ' % num_eq + '# parameters: %d' % num_param)
     # template for further representation
     template = {}
     for i in range(len(param_set)):
@@ -57,6 +58,6 @@ def generateAdjacentMatrix(graph):
             temp[item2] = 1  # indicate item2 exists in item1
             num_edge += 1
         dic[item1] = temp
-    print("System Statistics:\n" + "# nodes: %d, " % num_node + "# edges: %d" % num_edge)
+    print('System Statistics:\n' + '------------------\n' + '# nodes: %d, ' % num_node + '# edges: %d' % num_edge)
     ad_matrix = pd.DataFrame(dic).T
     return ad_matrix

@@ -3,7 +3,7 @@
 @File  : EqParse.py
 @Author: ZC Zeng
 @Date  : 2020/12/22 18:35
-@Desc  : A String Parse function reformatting input equations into valid format
+@Desc  : A string parse function reformatting input equations into valid format
 """
 
 
@@ -44,7 +44,6 @@ def eqsReformat(eqs_string):
     @param eqs_string: list of equations in string format
     @return eqs_dict: list of equations in dictionary format
     """
-    print("%s" % eqs_string + "\n")
     eq_list = eqs_string.splitlines()
     eq_dict = {}
     for i in range(len(eq_list)):

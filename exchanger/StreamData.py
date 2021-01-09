@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 @File  : StreamData.py
 @Author: ZC Zeng

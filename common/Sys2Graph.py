@@ -25,6 +25,4 @@ def generateGraph(event_matrix, alignment_map):
         for item2 in eq_id_list:
             if event_matrix.loc[item2, param] == 1 and item1 != item2:
                 graph.loc[item1, item2] = 1
-    # print("Directed graph for equations:")
-    # print("%s\n" % graph)
     return graph

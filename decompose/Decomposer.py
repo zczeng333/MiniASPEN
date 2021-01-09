@@ -10,20 +10,24 @@ from common.Sys2Matrix import generateAdjacentMatrix
 
 
 class Decomposer(object):
-    def __init__(self, system, ismatrix=False):
+    def __init__(self, system, ismatrix=False, show=True):
         """
-        ths function initializes parameters for decomposition process
+        this function initializes parameters for decomposition process
         @param system: a system represented as either graph or matrix representation
         @param ismatrix: whether eq is graph representation (False), or matrix representation (True)
+        @param show: whether print solver result in console
         """
+        self.system = system
+        self.show = show
         if ismatrix:
-            self.matrix = system
+            self.matrix = self.system
         else:
-            self.matrix = generateAdjacentMatrix(system)  # event matrix for equations
+            self.matrix = generateAdjacentMatrix(self.system)  # event matrix for equations
         self.loop_map = {}
         self.num_loop = 0
         self.solution = []
-        print(self.matrix)
+        if show:
+            print(self.matrix)
 
     def loopSearch(self):
         """
@@ -116,4 +120,11 @@ class Decomposer(object):
                         flag = True
                         self.solution[i].remove(item)
                         self.solution[i].extend(self.loop_map[item])
+        # format output string
+        if self.show:
+            res_str = '\nOptimal decomposition\n' + '---------------------\n'
+            if len(self.solution) != 0:
+                for item in self.solution:
+                    res_str = res_str + str(item) + '\n'
+                print(res_str)
         return self.solution

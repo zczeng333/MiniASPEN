@@ -9,4 +9,3 @@ from . import EqParse
 from . import Graph
 from . import Sys2Graph
 from . import Sys2Matrix
-from . import StreamProcessor

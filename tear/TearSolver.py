@@ -20,10 +20,11 @@ class TearSolver(object):
         @param system: a system represented as either graph or matrix representation
         @param ismatrix: whether eq is graph representation (False), or matrix representation (True)
         """
+        self.system = system
         if ismatrix:
-            self.matrix = system
+            self.matrix = self.system
         else:
-            self.matrix = generateAdjacentMatrix(system)  # adjacent matrix representation of this system
+            self.matrix = generateAdjacentMatrix(self.system)  # adjacent matrix representation of this system
         print(self.matrix)
         self.record = self.matrix.copy()  # record whether edge has been visited
         self.graph = Graph(self.matrix)  # graph representation of this system
@@ -105,4 +106,10 @@ class TearSolver(object):
         for i in range(len(res_x)):  # format solution
             if res_x[i] == 1:
                 tear_edge.append(self.edges[i])
+        # format output string
+        if tear_edge != None:
+            res_str = '\nOptimal tearing strategy\n' + '------------------------\n'
+            for item in tear_edge:
+                res_str = res_str + '%s' % item[0] + ' -> ' + '%s\n' % item[1]
+            print(res_str)
         return tear_edge
