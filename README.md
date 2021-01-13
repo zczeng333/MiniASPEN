@@ -23,6 +23,23 @@ package | version
 
 **Interpreter:**  python 3.x
 
+## Project Architecture
+
+### Overview
+![Overview](./images/Overview.png)
+
+### System Decomposition
+![Decomposer](./images/Decomposer_structure.png)
+
+### Equation Decomposition
+![EqSolver](./images/EqSolver_structure.png)
+
+### System Tearing
+![TearSolver](./images/TearSolver_structure.png)
+
+### Heat Exchange Network Synthesis
+![HENSolver](./images/HENSolver_structure.png)
+
 ## Usage
 ### System Decomposition
 
@@ -186,60 +203,4 @@ C<sub>2</sub>|70|185|2.0
 - Run the following command in your terminal
 ```
 > python main.py --task hen --problem_set streams_2.txt
-```
-
-## Project Architecture
-
-```buildoutcfg
-│  MiniASPEN.py  // main function
-│  README.md     // help
-│
-├─common    // common utils
-│      EqParse.py       // reformat input equations
-│      Graph.py         // data structures for graph
-│      Sys2Graph.py     // convert system to graph representation
-│      Sys2Matrix.py    // convert system to matrix representation
-│      __init__.py      // initilization script for common utils
-│
-├─decompose     // system decomposition solver
-│      Decomposer.py        // decomposition solver
-│      EqSolver.py          // equation solver
-│      OutputSelection.py   // select optimal output variables for equations
-│      __init__.py          // initialization script for decomposition utils
-│
-├─examples  // problem sets
-│      eq_1.txt
-│      eq_2.txt
-│      eq_3.txt
-│      graph_1.txt
-│      graph_10.txt
-│      graph_11.txt
-│      graph_2.txt
-│      graph_3.txt
-│      graph_4.txt
-│      graph_5.txt
-│      graph_6.txt
-│      graph_7.txt
-│      graph_8.txt
-│      graph_9.txt
-│      streams_1.txt
-│      streams_2.txt
-│      streams_4.txt
-│
-├─exchanger // heat exchange network systhesis solver
-│      HENSolver.py // hext exchange network solver
-│      StreamData.py    // data structures for stream
-│      StreamProcessor.py   // reformat input heat exchange network
-│      __init__.py  // initialization script for heat exchange network utils
-│
-├─images    //images
-│      graph_1.png
-│      graph_2.png
-│      graph_3.png
-│      graph_4.png
-│
-└─tear  // system tear solver
-        IntProg.py      // integer programming solver
-        TearSolver.py   // system tearing solver
-        __init__.py     // initialization script for system tearing utils
 ```

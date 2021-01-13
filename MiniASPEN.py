@@ -11,8 +11,11 @@ from tear.TearSolver import TearSolver
 from exchanger.HENSolver import HENSolver
 import argparse
 import textwrap
+from pycallgraph import PyCallGraph, GlobbingFilter, Config
+from pycallgraph.output import GraphvizOutput
 
-if __name__ == '__main__':
+
+def main():
     parser = argparse.ArgumentParser(description='Configuration file',
                                      usage='use "python %(prog)s --help" for more information',
                                      formatter_class=argparse.RawTextHelpFormatter)
@@ -21,12 +24,12 @@ if __name__ == '__main__':
         dest='task',
         default='hen',
         help=textwrap.dedent('''\
-        type of task, options:       
-        decompose: decompose a system       
-        equation: optimal solution for equations       
-        tear: tear a system
-        hen: heat exchange network synthesis
-        '''))
+            type of task, options:       
+            decompose: decompose a system       
+            equation: optimal solution for equations       
+            tear: tear a system
+            hen: heat exchange network synthesis
+            '''))
     parser.add_argument(
         '--problem_set',
         dest='problem_set',
@@ -42,8 +45,20 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    config = Config()
+    config.trace_filter = GlobbingFilter(include=[
+        'main',
+        'common.*',
+        'decompose.*',
+        'exchanger.*',
+        'tear.*'
+    ])
+
     # Decomposition
     if args.task == 'decompose':
+        # graphviz = GraphvizOutput()
+        # graphviz.output_file = ' images/Decomposer_structure.png'
+        # with PyCallGraph(output=graphviz, config=config):
         print('\nUsing Decomposition Solver\n' + '--------------------------\n')
         fr = open('./examples/' + args.problem_set, 'r+')
         system = eval(fr.read())
@@ -53,6 +68,9 @@ if __name__ == '__main__':
 
     # EqSolver
     elif args.task == 'equation':
+        # graphviz = GraphvizOutput()
+        # graphviz.output_file = ' images/EqSolver_structure.png'
+        # with PyCallGraph(output=graphviz, config=config):
         print('\nUsing Equation Solver\n' + '---------------------\n')
         fr = open('./examples/' + args.problem_set, 'r+')
         eq_string = str(fr.read())
@@ -62,6 +80,9 @@ if __name__ == '__main__':
 
     # TearSolver
     elif args.task == 'tear':
+        # graphviz = GraphvizOutput()
+        # graphviz.output_file = ' images/TearSolver_structure.png'
+        # with PyCallGraph(output=graphviz, config=config):
         print('\nUsing Tear Solver\n' + '-----------------\n')
         fr = open('./examples/' + args.problem_set, 'r+')
         system = eval(fr.read())
@@ -74,6 +95,9 @@ if __name__ == '__main__':
 
     # HENSolver
     elif args.task == 'hen':
+        # graphviz = GraphvizOutput()
+        # graphviz.output_file = ' images/HENSolver_structure.png'
+        # with PyCallGraph(output=graphviz, config=config):
         print('\nUsing HEN Solver\n' + '----------------\n')
         fr = open('./examples/' + args.problem_set, 'r+')
         system = eval(fr.read())
@@ -83,3 +107,7 @@ if __name__ == '__main__':
 
     else:
         print('invalid task type!\n')
+
+
+if __name__ == '__main__':
+    main()

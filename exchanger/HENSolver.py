@@ -3,7 +3,7 @@
 @File  : HENSolver.py
 @Author: ZC Zeng
 @Date  : 2021/1/7 13:26
-@Desc  :
+@Desc  : An heat exchange network solver finding optimal matches via pinch method
 """
 from exchanger.StreamProcessor import Processor
 from exchanger.StreamData import SplitS, Match
